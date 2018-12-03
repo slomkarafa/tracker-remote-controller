@@ -5,6 +5,8 @@ interface ControllerContract {
     interface View {
         fun isActive(): Boolean
         fun showJoystick()
+        fun showChart()
+        fun showMessage()
     }
 
     interface Presenter {

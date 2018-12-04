@@ -1,5 +1,7 @@
 package org.kristi.trackerremote.controller
 
+import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -11,13 +13,17 @@ class ControllerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var controllerFragment: ControllerFragment? = supportFragmentManager.findFragmentById(R.id.fragmentContaier) as ControllerFragment?
+        val controllerPresenter = ControllerPresenter()
+
+        var controllerFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as ControllerFragment?
 
         if (controllerFragment == null) {
-            controllerFragment = controllerFragmentProvider.get()   
+            controllerFragment = ControllerFragment()
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainer, controllerFragment)
                 .commit()
         }
+
+        controllerPresenter.takeView(controllerFragment)
     }
 }

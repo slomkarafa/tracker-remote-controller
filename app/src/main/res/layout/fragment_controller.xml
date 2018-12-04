@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+android:id="@+id/angle_text"
+    android:text="No elo"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/strength_text"
+              android:text="No elo"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/text0"
+              android:text="No elo"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/text1"
+              android:text="No elo"/>
+
+    <io.github.controlwear.virtual.joystick.android.JoystickView
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/joystick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:JV_buttonColor="#FF6E40"
+            custom:JV_buttonSizeRatio="15%"
+            custom:JV_borderColor="#00796B"
+            custom:JV_backgroundColor="#009688"
+            custom:JV_borderWidth="4dp"
+            custom:JV_fixedCenter="false"/>
+
+</LinearLayout>

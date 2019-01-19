@@ -4,7 +4,7 @@ interface ControllerContract {
 
     interface View {
         fun isActive(): Boolean
-        fun takePresnter(presenter: Presenter)
+        fun takePresenter(presenter: Presenter)
         fun showJoystick()
         fun showChart()
         fun showMessage()
@@ -12,5 +12,6 @@ interface ControllerContract {
 
     interface Presenter {
         fun takeView(view: View)
+        fun handleJoystick(angle: Int, strength: Int)
     }
 }

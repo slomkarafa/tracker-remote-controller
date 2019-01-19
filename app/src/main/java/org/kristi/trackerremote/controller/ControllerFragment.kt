@@ -12,7 +12,7 @@ import org.kristi.trackerremote.R
 class ControllerFragment : Fragment(), ControllerContract.View {
     lateinit var presenter: ControllerContract.Presenter
 
-    override fun takePresnter(presenter: ControllerContract.Presenter) {
+    override fun takePresenter(presenter: ControllerContract.Presenter) {
         this.presenter = presenter
     }
 
@@ -29,8 +29,9 @@ class ControllerFragment : Fragment(), ControllerContract.View {
         joystick.setOnMoveListener { angle: Int, strength: Int ->
             angle_text.text = angle.toString()
             strength_text.text = strength.toString()
-            text0.text = joystick.normalizedX.toString()
-            text1.text = joystick.normalizedY.toString()
+                presenter.handleJoystick(angle, strength)
+//            text0.text = joystick.normalizedX.toString()
+//            text1.text = joystick.normalizedY.toString()
 
         }
     }

@@ -2,10 +2,11 @@ package org.kristi.trackerremote.steering
 
 import android.util.Log
 import okhttp3.WebSocket
+import org.json.JSONStringer
 import org.kristi.trackerremote.network.NetworkService
 
 
-private val URL = "http://192.168.1.109:8080/go"
+private val URL = "http://192.168.43.154:8080/go"
 
 class ControllerService : Steering, NetworkService() {
 
@@ -16,12 +17,16 @@ class ControllerService : Steering, NetworkService() {
     }
 
     override fun ride(angle: Int, power: Int) {
-        Log.d("WSS","sending msg")
-        ws.send("elooo")
+        Log.d("WSS", "sending msg")
+        val request = """{
+            "angle":$angle,
+            "power":$power
+        }"""
+        ws.send(request)
     }
 
     override fun stop() {
-        ws.send("staph!!")
+        ws.send("stop")
     }
 
 }

@@ -30,7 +30,7 @@ open class NetworkService{
         ws = client.newWebSocket(request, object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: Response) {
                 super.onOpen(webSocket, response)
-                webSocket.send("a tutaj?")
+//                webSocket.send("a tutaj?")
                 output("WS openned")
             }
 

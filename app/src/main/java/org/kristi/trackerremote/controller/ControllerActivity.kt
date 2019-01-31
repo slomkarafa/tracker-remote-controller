@@ -15,8 +15,10 @@ class ControllerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val serverAdress = intent.getStringExtra("serverAddress")
+
 //        val steering = SteeringMock()
-        val steering = ControllerService()
+        val steering = ControllerService(serverAdress)
 
         val controllerPresenter = ControllerPresenter(steering)
 

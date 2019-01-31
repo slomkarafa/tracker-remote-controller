@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 private val NORMAL_CLOSURE_STATUS = 1000
 
-open class NetworkService{
+ class NetworkService{
 
 
     var timeout:Long = 3
@@ -19,13 +19,13 @@ open class NetworkService{
     
     fun create(timeout:Long,url:String) : WebSocket{
         this.timeout = timeout
-        this.url = url
+        this.url = "http://$url/go"
 
         val client = OkHttpClient.Builder()
             .readTimeout(timeout, TimeUnit.SECONDS)
             .build()
         val request = Request.Builder()
-            .url(url)
+            .url(this.url)
             .build()
         ws = client.newWebSocket(request, object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: Response) {
@@ -58,3 +58,9 @@ open class NetworkService{
         return ws
     }
 }
+//
+//class WebSocketWrapper(ws:WebSocket){
+//    fun send(text:String){
+//        ws.
+//    }
+//}

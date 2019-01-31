@@ -6,15 +6,12 @@ import org.json.JSONStringer
 import org.kristi.trackerremote.network.NetworkService
 
 
-private val URL = "http://192.168.43.154:8080/go"
 
-class ControllerService : Steering, NetworkService() {
+class ControllerService(
+    serverUrl: String
+) : Steering {
 
-    lateinit var webSocket: WebSocket
-
-    init {
-        ws = create(3, URL)
-    }
+    private var ws: WebSocket = NetworkService().create(3, serverUrl)
 
     override fun ride(angle: Int, power: Int) {
         Log.d("WSS", "sending msg")
@@ -22,11 +19,14 @@ class ControllerService : Steering, NetworkService() {
             "angle":$angle,
             "power":$power
         }"""
-        ws.send(request)
+        val ans = ws.send(request)
+        Log.d("WSSsendStatus",ans.toString())
     }
 
     override fun stop() {
-        ws.send("stop")
+        val ans = ws.send("stop")
+        Log.d("WSSsendStatusStop",ans.toString())
+
     }
 
 }

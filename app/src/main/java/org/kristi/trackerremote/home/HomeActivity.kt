@@ -13,7 +13,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
+        serverAddress.setText(getString(R.string.default_server_address))
         goButton.setOnClickListener {
             if (serverAddress.text.isNotEmpty()) {
                 val address = serverAddress.text.toString()

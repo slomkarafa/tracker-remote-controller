@@ -58,9 +58,3 @@ private val NORMAL_CLOSURE_STATUS = 1000
         return ws
     }
 }
-//
-//class WebSocketWrapper(ws:WebSocket){
-//    fun send(text:String){
-//        ws.
-//    }
-//}

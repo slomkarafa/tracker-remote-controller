@@ -2,7 +2,6 @@ package org.kristi.trackerremote.steering
 
 import android.util.Log
 import okhttp3.WebSocket
-import org.json.JSONStringer
 import org.kristi.trackerremote.network.NetworkService
 
 
@@ -19,13 +18,11 @@ class ControllerService(
             "angle":$angle,
             "power":$power
         }"""
-        val ans = ws.send(request)
-        Log.d("WSSsendStatus",ans.toString())
+        ws.send(request)
     }
 
     override fun stop() {
-        val ans = ws.send("stop")
-        Log.d("WSSsendStatusStop",ans.toString())
+        ws.send("stop")
 
     }
 

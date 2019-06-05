@@ -7,10 +7,9 @@ import org.kristi.trackerremote.network.NetworkService
 
 
 class ControllerService(
-    serverUrl: String
+    private var ws: WebSocket
 ) : Steering {
 
-    private var ws: WebSocket = NetworkService().create(3, serverUrl)
 
     override fun ride(angle: Int, power: Int) {
         Log.d("WSS", "sending msg")

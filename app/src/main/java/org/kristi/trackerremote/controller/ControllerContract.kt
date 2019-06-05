@@ -6,7 +6,7 @@ interface ControllerContract {
         fun isActive(): Boolean
         fun takePresenter(presenter: Presenter)
         fun showJoystick()
-        fun showChart()
+        fun showChart(data: ByteArray, dim: Int)
         fun showMessage()
     }
 

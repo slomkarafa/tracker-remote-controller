@@ -2,6 +2,7 @@ package org.kristi.trackerremote.controller
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,8 +37,8 @@ class ControllerFragment : Fragment(), ControllerContract.View {
         }
     }
 
-    override fun showChart() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showChart(data: ByteArray, dim: Int) {
+        Log.d("Dimensions", dim.toString())
     }
 
     override fun showMessage() {

@@ -10,14 +10,15 @@ import java.util.concurrent.TimeUnit
 
 private val NORMAL_CLOSURE_STATUS = 1000
 
- class NetworkService{
+class NetworkService {
 
 
-    var timeout:Long = 3
-    lateinit var url:String
-    lateinit var ws:WebSocket
-    
-    fun create(timeout:Long,url:String) : WebSocket{
+    var timeout: Long = 3
+    lateinit var url: String
+    lateinit var ws: WebSocket
+    var onMessageListener: ((String)->Unit)? = null
+
+    fun create(timeout: Long, url: String): WebSocket {
         this.timeout = timeout
         this.url = "http://$url/go"
 
@@ -35,6 +36,7 @@ private val NORMAL_CLOSURE_STATUS = 1000
             }
 
             override fun onMessage(webSocket: WebSocket?, text: String?) {
+                text?.let { onMessageListener?.invoke(it) }
                 output("Receiving : " + text!!)
             }
 
@@ -57,4 +59,8 @@ private val NORMAL_CLOSURE_STATUS = 1000
         })
         return ws
     }
+
+//    fun setOnMessageListener(onMessageListener: OnMessageInterface){
+//        this.onMessageListener = onMessageListener
+//    }
 }

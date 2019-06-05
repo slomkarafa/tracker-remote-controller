@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kristi.trackerremote.R
+import org.kristi.trackerremote.network.NetworkService
 import org.kristi.trackerremote.steering.ControllerService
 import org.kristi.trackerremote.steering.SteeringMock
 
@@ -18,9 +19,10 @@ class ControllerActivity : AppCompatActivity() {
         val serverAdress = intent.getStringExtra("serverAddress")
 
 //        val steering = SteeringMock()
-        val steering = ControllerService(serverAdress)
+        val network = NetworkService()
+        val steering = ControllerService(network.create(3, serverAdress))
 
-        val controllerPresenter = ControllerPresenter(steering)
+        val controllerPresenter = ControllerPresenter(steering, network)
 
         var controllerFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as ControllerFragment?
 

@@ -1,10 +1,8 @@
 package org.kristi.trackerremote.network
 
-import android.os.Bundle
 import android.util.Log
 import okhttp3.*
 import okio.ByteString
-import org.kristi.trackerremote.R
 import java.util.concurrent.TimeUnit
 
 
@@ -60,7 +58,4 @@ class NetworkService {
         return ws
     }
 
-//    fun setOnMessageListener(onMessageListener: OnMessageInterface){
-//        this.onMessageListener = onMessageListener
-//    }
 }

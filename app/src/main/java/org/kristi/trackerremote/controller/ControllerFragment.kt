@@ -1,5 +1,6 @@
 package org.kristi.trackerremote.controller
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -37,8 +38,10 @@ class ControllerFragment : Fragment(), ControllerContract.View {
         }
     }
 
-    override fun showChart(data: ByteArray, dim: Int) {
+    override fun showMap(data: Bitmap, dim: Int) {
         Log.d("Dimensions", dim.toString())
+
+        map_image.setImageBitmap(data)
     }
 
     override fun showMessage() {

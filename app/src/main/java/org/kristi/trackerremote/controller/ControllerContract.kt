@@ -15,5 +15,6 @@ interface ControllerContract {
     interface Presenter {
         fun takeView(view: View)
         fun handleJoystick(angle: Int, strength: Int)
+        fun cleanup()
     }
 }

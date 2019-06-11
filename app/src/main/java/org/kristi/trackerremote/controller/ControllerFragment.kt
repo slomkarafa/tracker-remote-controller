@@ -56,4 +56,9 @@ class ControllerFragment : Fragment(), ControllerContract.View {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun onStop() {
+        super.onStop()
+        presenter.cleanup()
+    }
+
 }

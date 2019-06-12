@@ -10,6 +10,7 @@ interface ControllerContract {
         fun showJoystick()
         fun showMap(data: Bitmap)
         fun showMessage()
+        fun showError(msg: String)
     }
 
     interface Presenter {

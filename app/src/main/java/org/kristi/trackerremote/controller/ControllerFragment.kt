@@ -7,11 +7,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import io.github.controlwear.virtual.joystick.android.JoystickView
 import kotlinx.android.synthetic.main.fragment_controller.*
 import org.kristi.trackerremote.R
 
 class ControllerFragment : Fragment(), ControllerContract.View {
+    override fun showError(msg: String) {
+        Toast
+            .makeText(context, msg, Toast.LENGTH_LONG)
+            .show()
+    }
+
     lateinit var presenter: ControllerContract.Presenter
 
     override fun takePresenter(presenter: ControllerContract.Presenter) {

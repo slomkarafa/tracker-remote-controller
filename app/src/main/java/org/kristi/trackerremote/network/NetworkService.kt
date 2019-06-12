@@ -15,6 +15,7 @@ class NetworkService {
     lateinit var url: String
     lateinit var ws: WebSocket
     var onMessageListener: ((ByteString) -> Unit)? = null
+    var onDisconnectListener: ((String) -> Unit)? = null
 
     fun create(timeout: Long, url: String): WebSocket {
         this.timeout = timeout

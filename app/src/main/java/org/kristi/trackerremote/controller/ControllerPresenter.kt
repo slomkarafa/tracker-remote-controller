@@ -1,17 +1,10 @@
 package org.kristi.trackerremote.controller
 
 import android.graphics.BitmapFactory
-import org.json.JSONObject
 import org.kristi.trackerremote.network.NetworkService
 import org.kristi.trackerremote.steering.Steering
-import android.graphics.Bitmap
-import android.provider.Contacts
-import android.util.Base64
 import android.util.Log
-import kotlinx.coroutines.*
 import okio.ByteString
-import org.json.JSONArray
-import kotlin.coroutines.CoroutineContext
 
 
 class ControllerPresenter(
@@ -31,7 +24,7 @@ class ControllerPresenter(
     lateinit var view: ControllerContract.View
 
 
-    fun listener(it: ByteString) {
+    private fun handleMessage(it: ByteString) {
 
         val bytes = it.toByteArray()
 
@@ -40,17 +33,20 @@ class ControllerPresenter(
         Log.d("WSS", "showing map")
 
     }
+    private fun handleDisconnect(msg: String) {
+
+    }
 
 
-    fun registerOnMessageListener() {
+    private fun registerListeners() {
         network.onMessageListener = {
-            listener(it)
+            handleMessage(it)
         }
     }
 
     override fun takeView(view: ControllerContract.View) {
         this.view = view
-        this.registerOnMessageListener()
+        this.registerListeners()
     }
 
     override fun cleanup() {

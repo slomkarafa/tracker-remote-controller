@@ -8,7 +8,7 @@ interface ControllerContract {
         fun isActive(): Boolean
         fun takePresenter(presenter: Presenter)
         fun showJoystick()
-        fun showMap(data: Bitmap, dim: Int)
+        fun showMap(data: Bitmap)
         fun showMessage()
     }
 

@@ -14,7 +14,7 @@ class NetworkService {
     var timeout: Long = 3
     lateinit var url: String
     lateinit var ws: WebSocket
-    var onMessageListener: ((String)->Unit)? = null
+    var onMessageListener: ((ByteString) -> Unit)? = null
 
     fun create(timeout: Long, url: String): WebSocket {
         this.timeout = timeout
@@ -34,12 +34,15 @@ class NetworkService {
             }
 
             override fun onMessage(webSocket: WebSocket?, text: String?) {
-                text?.let { onMessageListener?.invoke(it) }
+//                text?.let { onMessageListener?.invoke(it) }
                 output("Receiving : " + text!!)
             }
 
             override fun onMessage(webSocket: WebSocket?, bytes: ByteString?) {
-                output("Receiving bytes : " + bytes!!.hex())
+//                output("Receiving bytes : " + bytes!!.hex())
+                bytes?.let { onMessageListener?.invoke(it) }
+
+                output("Receiving bytes : " + bytes!!.toString())
             }
 
             override fun onClosing(webSocket: WebSocket?, code: Int, reason: String?) {
@@ -47,9 +50,10 @@ class NetworkService {
                 output("Closing : $code / $reason")
             }
 
-//            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response) {
-//                output("Error : " + t.message)
-//            }
+            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+                super.onFailure(webSocket, t, response)
+                Log.e("WSS", response?.message() ?: "null", t)
+            }
 
             private fun output(txt: String) {
                 Log.v("WSS", txt)

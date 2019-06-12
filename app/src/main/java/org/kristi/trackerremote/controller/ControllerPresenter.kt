@@ -9,6 +9,7 @@ import android.provider.Contacts
 import android.util.Base64
 import android.util.Log
 import kotlinx.coroutines.*
+import okio.ByteString
 import org.json.JSONArray
 import kotlin.coroutines.CoroutineContext
 
@@ -16,10 +17,8 @@ import kotlin.coroutines.CoroutineContext
 class ControllerPresenter(
     private val steering: Steering,
     private val network: NetworkService
-) : ControllerContract.Presenter, CoroutineScope {
+) : ControllerContract.Presenter{
 
-    private val job = Job()
-    override val coroutineContext: CoroutineContext = job + Dispatchers.IO
 
     override fun handleJoystick(angle: Int, strength: Int) {
         if (angle == 0 && strength == 0) {
@@ -32,63 +31,20 @@ class ControllerPresenter(
     lateinit var view: ControllerContract.View
 
 
-    fun listener(it: String) {
+    fun listener(it: ByteString) {
 
-        val data = JSONObject(it)
-        val arr = data.getJSONArray("data")
+        val bytes = it.toByteArray()
 
-
-        val bytes = ByteArray(arr.length())
-        for (i in 0 until arr.length()) {
-            bytes[i] = (arr.get(i) as Int and 0xFF).toByte()
-        }
-
-        val dim = data.getInt("dim")
-        val options = BitmapFactory.Options()
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-        view.showMap(bitmap, dim)
+        view.showMap(bitmap)
         Log.d("WSS", "showing map")
 
     }
 
-    fun listener2(it: String): Bitmap {
-
-        val data = JSONObject(it)
-        val arr = data.getJSONArray("data")
-
-
-        val bytes = ByteArray(arr.length())
-        for (i in 0 until arr.length()) {
-            bytes[i] = (arr.get(i) as Int and 0xFF).toByte()
-        }
-
-        val dim = data.getInt("dim")
-        val options = BitmapFactory.Options()
-        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-//        view.showMap(bitmap, dim)
-        Log.d("WSS", "showing map")
-        return bitmap
-
-    }
 
     fun registerOnMessageListener() {
         network.onMessageListener = {
             listener(it)
-//            launch { listener(it) }
-//            GlobalScope.launch {
-//                val bitmap = listener2(it)
-//                withContext(Dispatchers.Main) {
-////                    view.showMap(bitmap, 200)
-//                    Log.d("WSS", "im async")
-//                }
-//            }
-//            launch{
-//                val bitmap = listener2(it)
-//                withContext(Dispatchers.Main){
-////                    view.showMap(bitmap, 200)
-//                    Log.d("WSS", "im async")
-//                }
-//            }
         }
     }
 
@@ -98,6 +54,5 @@ class ControllerPresenter(
     }
 
     override fun cleanup() {
-        job.cancel()
     }
 }

@@ -31,17 +31,16 @@ class ControllerFragment : Fragment(), ControllerContract.View {
         joystick.setOnMoveListener { angle: Int, strength: Int ->
             angle_text.text = angle.toString()
             strength_text.text = strength.toString()
-                presenter.handleJoystick(angle, strength)
+            presenter.handleJoystick(angle, strength)
 //            text0.text = joystick.normalizedX.toString()
 //            text1.text = joystick.normalizedY.toString()
 
         }
     }
 
-    override fun showMap(data: Bitmap, dim: Int) {
-        Log.d("Dimensions", dim.toString())
+    override fun showMap(data: Bitmap) {
 
-        map_image.setImageBitmap(data)
+        requireActivity().runOnUiThread { map_image.setImageBitmap(data) }
     }
 
     override fun showMessage() {

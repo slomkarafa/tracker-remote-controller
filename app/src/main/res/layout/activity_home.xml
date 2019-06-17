@@ -32,11 +32,11 @@
 
     <Button
             android:text="@string/go"
-            android:layout_margin="100dp"
+            android:layout_margin="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/goButton"/>
 
-
+java.net.UnknownServiceException: CLEARTEXT communication to 192.168.1.201 not permitted by network security policy
 </LinearLayout>

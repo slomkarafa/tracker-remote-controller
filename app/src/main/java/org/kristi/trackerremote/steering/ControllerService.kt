@@ -1,9 +1,10 @@
 package org.kristi.trackerremote.steering
 
 import android.util.Log
+import com.beust.klaxon.Klaxon
 import okhttp3.WebSocket
 import org.kristi.trackerremote.network.NetworkService
-
+import kotlin.math.log
 
 
 class ControllerService(
@@ -12,16 +13,19 @@ class ControllerService(
 
 
     override fun ride(angle: Int, power: Int) {
-        Log.d("WSS", "sending msg")
+        Log.d("WSS_angle", angle.toString())
+        Log.d("WSS_power", power.toString())
         val request = """{
-            "angle":$angle,
-            "power":$power
+            "action": "manual",
+            "data": ${Klaxon().toJsonString(circleToDrives(angle, power))}
         }"""
+        Log.d("WSS_sending", request)
+
         ws.send(request)
     }
 
     override fun stop() {
-        ws.send("stop")
+        ws.send("""{"action":"manual","data":"stop"}""")
 
     }
 

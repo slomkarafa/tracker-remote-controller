@@ -19,7 +19,7 @@ class NetworkService {
 
     fun create(timeout: Long, url: String): WebSocket {
         this.timeout = timeout
-        this.url = "http://$url/go"
+        this.url = "ws://$url/mobile"
 
         val client = OkHttpClient.Builder()
             .readTimeout(timeout, TimeUnit.SECONDS)
@@ -30,7 +30,7 @@ class NetworkService {
         ws = client.newWebSocket(request, object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: Response) {
                 super.onOpen(webSocket, response)
-//                webSocket.send("a tutaj?")
+                webSocket.send("""{"action":"register_for_map"}""")
                 output("WS openned")
             }
 
@@ -41,9 +41,10 @@ class NetworkService {
 
             override fun onMessage(webSocket: WebSocket?, bytes: ByteString?) {
 //                output("Receiving bytes : " + bytes!!.hex())
-                bytes?.let { onMessageListener?.invoke(it) }
-
                 output("Receiving bytes : " + bytes!!.toString())
+
+                bytes.let { onMessageListener?.invoke(it) }
+
             }
 
             override fun onClosing(webSocket: WebSocket?, code: Int, reason: String?) {

@@ -30,7 +30,7 @@ class NetworkService {
         ws = client.newWebSocket(request, object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: Response) {
                 super.onOpen(webSocket, response)
-                webSocket.send("""{"action":"register_for_map"}""")
+                webSocket.send("""{"action":"register","data":"app"}""")
                 output("WS openned")
             }
 

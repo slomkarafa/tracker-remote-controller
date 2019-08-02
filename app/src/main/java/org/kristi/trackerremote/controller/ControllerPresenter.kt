@@ -11,6 +11,9 @@ class ControllerPresenter(
     private val steering: Steering,
     private val network: NetworkService
 ) : ControllerContract.Presenter{
+    override fun handleSavingStatus(status: SavingStatus) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     override fun handleJoystick(angle: Int, strength: Int) {
@@ -34,7 +37,7 @@ class ControllerPresenter(
 
     }
     private fun handleDisconnect(msg: String) {
-
+        Log.d("WSS_disconnected", msg)
     }
 
 

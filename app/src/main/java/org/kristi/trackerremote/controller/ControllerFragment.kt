@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.fragment_controller.*
 import org.kristi.trackerremote.R
 
 class ControllerFragment : Fragment(), ControllerContract.View {
+    override fun showSavingStatus(isSaving: Boolean) {
+        saving_switch.isChecked = isSaving
+    }
+
     override fun showError(msg: String) {
         Toast
             .makeText(context, msg, Toast.LENGTH_LONG)
@@ -43,6 +47,7 @@ class ControllerFragment : Fragment(), ControllerContract.View {
 //            text1.text = joystick.normalizedY.toString()
 
         }
+        saving_switch?.setOnCheckedChangeListener { _, isChecked ->  Log.d("WSS_checked",isChecked.toString())}
     }
 
     override fun showMap(data: Bitmap) {

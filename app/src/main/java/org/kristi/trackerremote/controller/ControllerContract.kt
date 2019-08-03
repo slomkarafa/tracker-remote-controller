@@ -18,6 +18,6 @@ interface ControllerContract {
         fun takeView(view: View)
         fun handleJoystick(angle: Int, strength: Int)
         fun cleanup()
-        fun handleSavingStatus(status: SavingStatus)
+        fun handleSavingStatus(isSaving: Boolean)
     }
 }

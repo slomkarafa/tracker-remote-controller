@@ -1,3 +1,3 @@
 package org.kristi.trackerremote.network
 
-class ActionModel(val action: String)
+data class Action(val action: String, val data: Any)

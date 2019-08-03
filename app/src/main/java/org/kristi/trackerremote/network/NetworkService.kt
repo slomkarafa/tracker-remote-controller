@@ -14,7 +14,8 @@ class NetworkService {
     var timeout: Long = 3
     lateinit var url: String
     lateinit var ws: WebSocket
-    var onMessageListener: ((ByteString) -> Unit)? = null
+    var onMapChangeListener: ((ByteString) -> Unit)? = null
+    var onMessageListener: ((String) -> Unit)? = null
     var onDisconnectListener: ((String) -> Unit)? = null
 
     fun create(timeout: Long, url: String): WebSocket {
@@ -35,15 +36,16 @@ class NetworkService {
             }
 
             override fun onMessage(webSocket: WebSocket?, text: String?) {
-//                text?.let { onMessageListener?.invoke(it) }
+//                text?.let { onMapChangeListener?.invoke(it) }
                 output("Receiving : " + text!!)
+                text.let { onMessageListener?.invoke(it) }
             }
 
             override fun onMessage(webSocket: WebSocket?, bytes: ByteString?) {
 //                output("Receiving bytes : " + bytes!!.hex())
                 output("Receiving bytes : " + bytes!!.toString())
 
-                bytes.let { onMessageListener?.invoke(it) }
+                bytes.let { onMapChangeListener?.invoke(it) }
 
             }
 

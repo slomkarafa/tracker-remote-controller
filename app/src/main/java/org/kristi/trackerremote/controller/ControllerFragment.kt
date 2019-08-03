@@ -14,7 +14,7 @@ import org.kristi.trackerremote.R
 
 class ControllerFragment : Fragment(), ControllerContract.View {
     override fun showSavingStatus(isSaving: Boolean) {
-        saving_switch.isChecked = isSaving
+        requireActivity().runOnUiThread { saving_switch.isChecked = isSaving }
     }
 
     override fun showError(msg: String) {
@@ -47,7 +47,7 @@ class ControllerFragment : Fragment(), ControllerContract.View {
 //            text1.text = joystick.normalizedY.toString()
 
         }
-        saving_switch?.setOnCheckedChangeListener { _, isChecked ->  Log.d("WSS_checked",isChecked.toString())}
+        saving_switch?.setOnCheckedChangeListener { _, isChecked -> presenter.handleSavingStatus(isChecked) }
     }
 
     override fun showMap(data: Bitmap) {

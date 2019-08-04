@@ -15,6 +15,7 @@ class ControllerPresenter(
 ) : ControllerContract.Presenter{
     override fun handleSavingStatus(isSaving: Boolean) {
         Log.d("WSS","should send")
+        steering.setSaving(isSaving)
     }
 
 

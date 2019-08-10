@@ -11,11 +11,13 @@ interface ControllerContract {
         fun showMap(data: Bitmap)
         fun showMessage()
         fun showError(msg: String)
+        fun showSavingStatus(isSaving: Boolean)
     }
 
     interface Presenter {
         fun takeView(view: View)
         fun handleJoystick(angle: Int, strength: Int)
         fun cleanup()
+        fun handleSavingStatus(isSaving: Boolean)
     }
 }

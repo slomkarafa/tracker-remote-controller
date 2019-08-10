@@ -10,6 +10,9 @@ import kotlin.math.log
 class ControllerService(
     private var ws: WebSocket
 ) : Steering {
+    override fun setSaving(shouldSaving: Boolean){
+        ws.send("""{"action":"set_saving","data":$shouldSaving}""")
+    }
 
 
     override fun ride(angle: Int, power: Int) {

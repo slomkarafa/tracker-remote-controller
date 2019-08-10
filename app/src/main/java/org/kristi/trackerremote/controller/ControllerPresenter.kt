@@ -35,7 +35,9 @@ class ControllerPresenter(
         val bytes = it.toByteArray()
 
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-        view.showMap(bitmap)
+        if (bitmap != null){
+            view.showMap(bitmap)
+        }
         Log.d("WSS", "showing map")
 
     }

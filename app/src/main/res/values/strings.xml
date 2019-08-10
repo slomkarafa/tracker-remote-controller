@@ -5,8 +5,8 @@
     <string name="enter_adress">Enter robot\'s server address</string>
     <!--<string name="default_server_address">raspberrypi.home:8080</string>-->
     <!--<string name="default_server_address">192.168.1.201:8080</string>-->
-    <!--<string name="default_server_address">192.168.2.12:8080</string>-->
-    <string name="default_server_address">192.168.0.224:8080</string>
+    <string name="default_server_address">192.168.2.12:8080</string>
+    <!--<string name="default_server_address">192.168.0.224:8080</string>-->
     <string name="rpi_server_address">raspberrypi.home:8080</string>
     <string name="saving">saving</string>
 </resources>

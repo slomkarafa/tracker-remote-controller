@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_controller.*
 import org.kristi.trackerremote.R
 
 class ControllerFragment : Fragment(), ControllerContract.View {
+    private var strength : Int = 0
+    private var angle : Int = 0
     override fun showSavingStatus(isSaving: Boolean) {
         requireActivity().runOnUiThread { saving_switch.isChecked = isSaving }
     }
@@ -39,13 +41,17 @@ class ControllerFragment : Fragment(), ControllerContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        joystick.setOnMoveListener { angle: Int, strength: Int ->
-            angle_text.text = angle.toString()
-            strength_text.text = strength.toString()
-            presenter.handleJoystick(angle, strength)
-//            text0.text = joystick.normalizedX.toString()
-//            text1.text = joystick.normalizedY.toString()
-
+        joystick_0.setOnMoveListener { _: Int, strength: Int ->
+            this.strength = strength
+            presenter.handleJoystick(this.angle, this.strength)
+            strength_text.text = this.strength.toString()
+            angle_text.text = this.angle.toString()
+        }
+        joystick_1.setOnMoveListener { angle: Int, _: Int ->
+            this.angle = angle
+            presenter.handleJoystick(this.angle, this.strength)
+            angle_text.text = this.angle.toString()
+            strength_text.text = this.strength.toString()
         }
         saving_switch?.setOnCheckedChangeListener { _, isChecked -> presenter.handleSavingStatus(isChecked) }
     }

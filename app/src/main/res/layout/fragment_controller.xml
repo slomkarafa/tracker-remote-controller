@@ -16,7 +16,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:orientation="horizontal"
+                  android:orientation="vertical"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_gravity="end"
@@ -28,36 +28,44 @@
                 android:layout_gravity="top"
                 android:layout_margin="20dp"
                 android:id="@+id/saving_switch"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/angle_text"
+                  android:text="No elo"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/strength_text"
+                  android:text="No elo"/>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                      android:orientation="vertical"
+                      android:orientation="horizontal"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:layout_gravity="center"
         >
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:id="@+id/angle_text"
-                      android:text="No elo"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:id="@+id/strength_text"
-                      android:text="No elo"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:id="@+id/text0"
-                      android:text="No elo"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:id="@+id/text1"
-                      android:text="No elo"/>
+
+            <io.github.controlwear.virtual.joystick.android.JoystickView
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/joystick_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    custom:JV_buttonColor="#FF6E40"
+                    custom:JV_buttonSizeRatio="15%"
+                    custom:JV_borderColor="#00796B"
+                    custom:JV_backgroundColor="#009688"
+                    custom:JV_borderWidth="4dp"
+                    custom:JV_fixedCenter="false"/>
+
+            <io.github.controlwear.virtual.joystick.android.JoystickView
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/joystick_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    custom:JV_buttonColor="#FF6E40"
+                    custom:JV_buttonSizeRatio="15%"
+                    custom:JV_borderColor="#00796B"
+                    custom:JV_backgroundColor="#009688"
+                    custom:JV_borderWidth="4dp"
+                    custom:JV_fixedCenter="false"/>
         </LinearLayout>
 
-        <io.github.controlwear.virtual.joystick.android.JoystickView
-                xmlns:custom="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/joystick"
-                android:layout_width="wrap_content"
-                android:layout_height="300dp"
-                custom:JV_buttonColor="#FF6E40"
-                custom:JV_buttonSizeRatio="15%"
-                custom:JV_borderColor="#00796B"
-                custom:JV_backgroundColor="#009688"
-                custom:JV_borderWidth="4dp"
-                custom:JV_fixedCenter="false"/>
+
     </LinearLayout>
 </LinearLayout>

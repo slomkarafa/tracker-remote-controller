@@ -14,7 +14,7 @@ import org.kristi.trackerremote.R
 
 class ControllerFragment : Fragment(), ControllerContract.View {
     private var strength : Int = 0
-    private var angle : Int = 0
+    private var angle : Int = 90
     override fun showSavingStatus(isSaving: Boolean) {
         requireActivity().runOnUiThread { saving_switch.isChecked = isSaving }
     }
@@ -43,6 +43,7 @@ class ControllerFragment : Fragment(), ControllerContract.View {
         super.onViewCreated(view, savedInstanceState)
         joystick_0.setOnMoveListener { _: Int, strength: Int ->
             this.strength = strength
+            this.angle = if (this.angle == 0) 90 else this.angle
             presenter.handleJoystick(this.angle, this.strength)
             strength_text.text = this.strength.toString()
             angle_text.text = this.angle.toString()
